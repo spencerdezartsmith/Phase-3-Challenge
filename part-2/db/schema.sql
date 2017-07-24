@@ -1,0 +1,23 @@
+CREATE TABLE shoppers (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE items (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(255),
+  price DECIMAL(10,2),
+  section VARCHAR(255)
+);
+
+CREATE TABLE orders (
+  id SERIAL PRIMARY KEY NOT NULL,
+  shopper_id INTEGER NOT NULL REFERENCES shoppers(id),
+  order_date TIMESTAMP NOT NULL
+);
+
+CREATE TABLE orders_items (
+  id SERIAL PRIMARY KEY NOT NULL,
+  order_id INTEGER NOT NULL REFERENCES orders(id),
+  item_id INTEGER NOT NULL REFERENCES items(id)
+);
