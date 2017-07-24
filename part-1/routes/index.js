@@ -1,46 +1,24 @@
 const express = require('express')
 const router = express.Router()
+const { supportedOperations, square, compute } = require('../operations')
 
 router.get('/supported-operations', (req, res) => {
-  res.send({
-    "/": "division",
-    "+": "addition",
-    "-": "subtration",
-    "*": "multiplication"
-  })
+  res.send(supportedOperations())
 })
 
 router.get('/square', (req, res) => {
   const number = Number(req.query.number)
-  const squared = number * number
-  res.send({ result: squared })
+  res.send({ result: square(number) })
 })
 
 router.post('/compute', (req, res) => {
-  const { operator } = req.body
-  const { operands } = req.body
-  let result
-  let error
+  const { operator, operands } = req.body
+  const result = compute(operator, operands)
 
-  switch(operator) {
-    case '+':
-      result = operands[0] + operands[1]
-      break
-    case '/':
-      result = operands[0] / operands[1]
-      break
-    case '-':
-      result = operands[0] - operands[1]
-      break
-    case '*':
-      result = operands[0] * operands[1]
-      break
-    default:
-      error = `invalid operator ${operator}. Valid operators are /, +, -, *`
-  }
-
-  if (error) {
-    res.send({ error })
+  if (result === undefined) {
+    res.status(404).send({
+      error: `invalid operator ${operator}. Valid operators are /, +, -, *`
+    })
   } else {
     res.send({ result })
   }
