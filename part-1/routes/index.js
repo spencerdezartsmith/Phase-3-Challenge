@@ -16,4 +16,34 @@ router.get('/square', (req, res) => {
   res.send({ result: squared })
 })
 
+router.post('/compute', (req, res) => {
+  const { operator } = req.body
+  const { operands } = req.body
+  let result
+  let error
+
+  switch(operator) {
+    case '+':
+      result = operands[0] + operands[1]
+      break
+    case '/':
+      result = operands[0] / operands[1]
+      break
+    case '-':
+      result = operands[0] - operands[1]
+      break
+    case '*':
+      result = operands[0] * operands[1]
+      break
+    default:
+      error = `invalid operator ${operator}. Valid operators are /, +, -, *`
+  }
+
+  if (error) {
+    res.send({ error })
+  } else {
+    res.send({ result })
+  }
+})
+
 module.exports = router
