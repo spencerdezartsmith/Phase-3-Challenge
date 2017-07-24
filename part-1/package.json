@@ -8,7 +8,7 @@
     "start": "nodemon app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Spencer Dezart-Smith",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.2",
