@@ -13,7 +13,7 @@ const cheapItems = () => {
 }
 
 const countItemsInSection = (section) => {
-  return db.any('SELECT COUNT(id) FROM items WHERE section = $1', [section])
+  return db.one('SELECT COUNT(id) FROM items WHERE section = $1', [section])
 }
 
 const mostRecentOrders = () => {
