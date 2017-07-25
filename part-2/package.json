@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "db:drop": "dropdb grocery_store;",
-    "db:create": "createdb grocery_store;",
-    "db:schema": "psql -d grocery_store < db/schema.sql",
-    "db:seed": "psql -d grocery_store < db/load-data.sql"
+    "test": "NODE_ENV=test mocha --reporter spec",
+    "db:drop": "dropdb grocery_store; dropdb grocery_store_test",
+    "db:create": "createdb grocery_store; createdb grocery_store_test",
+    "db:schema": "psql -d grocery_store < db/schema.sql; psql -d grocery_store_test < db/schema.sql",
+    "db:seed": "psql -d grocery_store < db/load-data.sql; psql -d grocery_store_test < db/load-data.sql"
   },
   "keywords": [],
   "author": "",
