@@ -148,6 +148,10 @@ body {
   background-color: rgba(205, 210, 216, .6);
 }
 
+.modal-close {
+  display: none;
+}
+
 .grid {
   display: flex;
 }
