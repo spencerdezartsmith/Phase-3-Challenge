@@ -10,6 +10,19 @@
 
 ## Part 1: Simple web app
 
+### Usage:
+
+run `npm install`
+run `npm start`
+naviage to `http://localhost:3000`
+
+The following routes are accessible:
+```
+/api/supported-operations
+/api/square
+/api/compute
+```
+
 ### Requirements
 
 - [X] __10:__ All files are stored under the `part-1/` folder
@@ -22,6 +35,8 @@
 ## Part 2: Database for grocery store & tests
 
 ### Usage:
+
+run `npm install`
 run `npm run db:setup`
 run `npm test`
 
