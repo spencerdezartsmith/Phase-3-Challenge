@@ -1,18 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
   let total = 0.00
   let itemCount = 0
-  const cartList = document.querySelector('.cart-list')
+
   const modal = document.querySelector('#modal')
   const overlay = document.querySelector('#modal-overlay')
-  const cartCount = document.querySelector('#cart-item-count')
-  const totalElem = document.querySelector('.total-amount')
+  const cartList = document.querySelector('.cart-list')
 
   function setItemCount(elem) {
-    elem.textContent = `(${itemCount})`
+    document.querySelector('#cart-item-count').textContent = `(${itemCount})`
   }
 
   function setCartTotal(elem) {
-    elem.textContent = `$${total.toFixed(2)}`
+    document.querySelector('.total-amount').textContent = `$${total.toFixed(2)}`
   }
 
   function createNewCartItem(ul, name, price) {
@@ -48,39 +47,20 @@ document.addEventListener('DOMContentLoaded', () => {
       total += price
       itemCount += 1
       createNewCartItem(cartList, itemName, price)
-      setCartTotal(totalElem)
-      setItemCount(cartCount)
+      setCartTotal()
+      setItemCount()
     } else if (selected.className === 'clear-btn') {
       total = 0.00
       itemCount = 0
-      setCartTotal(totalElem)
-      setItemCount(cartCount)
+      setCartTotal()
+      setItemCount()
       clearCartItems(cartList)
     } else if (selected.id === 'close-btn') {
       closeCart(modal, overlay)
     } else if (selected.id === 'cart-btn') {
       openCart(modal, overlay)
     } else if (selected.textContent === 'Produce' || 'Deli' || 'Frozen') {
-      window.location.hash = selected.textContent
+      location.href = `#${selected.textContent}`
     }
   })
-
-
-
-
-
-
-
- // Set up a total
- // Set up a count variable
- // Set up the list string for new elements added
- // Add event listener to page
-  // if its the cart button
-   // open modal
-  // if its close button
-    // close modal
-  // if clear
-    //remove all the li's
-  // if add to cart
-   // create new li element function
 })
