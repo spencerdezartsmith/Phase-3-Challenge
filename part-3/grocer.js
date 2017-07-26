@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (selected.id === 'cart-btn') {
       openCart(modal, overlay)
     } else if (selected.textContent === 'Produce' || 'Deli' || 'Frozen') {
-      window.location.hash = selected.textContent
+      location.href = `#${selected.textContent}`
     }
   })
 
