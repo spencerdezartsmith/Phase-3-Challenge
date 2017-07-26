@@ -12,9 +12,9 @@
 
 ### Usage:
 
-run `npm install`
-run `npm start`
-naviage to `http://localhost:3000`
+run `npm install` 
+run `npm start` 
+naviage to `http://localhost:3000` 
 
 The following routes are accessible:
 ```
