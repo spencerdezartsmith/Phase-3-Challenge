@@ -4,34 +4,36 @@ document.addEventListener('DOMContentLoaded', () => {
   const cartList = document.querySelector('.cart-list')
   const modal = document.querySelector('#modal')
   const overlay = document.querySelector('#modal-overlay')
+  const cartCount = document.querySelector('#cart-item-count')
+  const totalElem = document.querySelector('.total-amount')
 
-  function setItemCount() {
-    document.querySelector('#cart-item-count').textContent = `(${itemCount})`
+  function setItemCount(elem) {
+    elem.textContent = `(${itemCount})`
   }
 
-  function setCartTotal() {
-    document.querySelector('.total-amount').textContent = `$${total}`
+  function setCartTotal(elem) {
+    elem.textContent = `$${total.toFixed(2)}`
   }
 
-  function createListItem(ul, name, price) {
+  function createNewCartItem(ul, name, price) {
     let li = document.createElement('li')
     li.setAttribute('class', 'cart-list-item')
     li.innerHTML = `<span>${name}</span><span>$${price}</span>`
     ul.appendChild(li)
   }
 
-  function clearCart(ul) {
+  function clearCartItems(ul) {
     while (ul.firstChild) {
       ul.removeChild( ul.firstChild )
     }
   }
 
-  function openModal(modal, overlay) {
+  function openCart(modal, overlay) {
     modal.classList.remove('modal-close')
     overlay.classList.remove('modal-close')
   }
 
-  function closeModal(modal, overlay) {
+  function closeCart(modal, overlay) {
     modal.classList.add('modal-close')
     overlay.classList.add('modal-close')
   }
@@ -39,8 +41,27 @@ document.addEventListener('DOMContentLoaded', () => {
   // Listen for events
   document.querySelector('body').addEventListener('click', function(event) {
     const selected = event.target
-    if (selected.textContent === 'Cart(40)') {
-      console.log(true)
+
+    if (selected.className === 'add-button') {
+      const itemName = selected.parentElement.firstElementChild.textContent
+      const price = Number(selected.previousElementSibling.textContent.slice(1))
+      total += price
+      itemCount += 1
+      createNewCartItem(cartList, itemName, price)
+      setCartTotal(totalElem)
+      setItemCount(cartCount)
+    } else if (selected.className === 'clear-btn') {
+      total = 0.00
+      itemCount = 0
+      setCartTotal(totalElem)
+      setItemCount(cartCount)
+      clearCartItems(cartList)
+    } else if (selected.id === 'close-btn') {
+      closeCart(modal, overlay)
+    } else if (selected.id === 'cart-btn') {
+      openCart(modal, overlay)
+    } else if (selected.textContent === 'Produce' || 'Deli' || 'Frozen') {
+      window.location.hash = selected.textContent
     }
   })
 
