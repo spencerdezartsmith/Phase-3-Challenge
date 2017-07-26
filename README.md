@@ -36,9 +36,9 @@ The following routes are accessible:
 
 ### Usage:
 
-run `npm install`
-run `npm run db:setup`
-run `npm test`
+run `npm install`  
+run `npm run db:setup`  
+run `npm test`  
 
 ### Requirements
 
