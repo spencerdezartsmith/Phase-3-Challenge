@@ -21,7 +21,6 @@ module.exports = {
       case '*':
         return operands[0] * operands[1]
       default:
-        // error = `invalid operator ${operator}. Valid operators are /, +, -, *`
         return undefined
     }
   }
